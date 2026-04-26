@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background — warm black, matches site's --bg variable -->
+  <rect width="64" height="64" fill="#0b0a08"/>
+
+  <!--
+    "M." rendered in Instrument Serif via Google Fonts.
+    The @import works in modern browsers that support SVG <style> blocks.
+    System serifs (Charter, Cambria, Georgia) are listed as fallbacks
+    so the favicon still looks reasonable if the font hasn't loaded.
+  -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&amp;display=swap');
+    .glyph {
+      font-family: 'Instrument Serif', 'Charter', 'Cambria', 'Georgia', serif;
+      font-size: 56px;
+      font-weight: 400;
+    }
+  </style>
+
+  <!--
+    Centered "M" with the amber period to its right.
+    text-anchor and dominant-baseline keep it visually balanced
+    inside the 64×64 box at any rendering size.
+  -->
+  <text x="32" y="48" text-anchor="middle" class="glyph" fill="#ffffff">
+    M<tspan fill="#ffb000">.</tspan>
+  </text>
+</svg>
