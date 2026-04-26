@@ -132,8 +132,7 @@ RULES:
 - Project names are proper nouns — capitalize them: Odyssey, Clario, Storefront, Revamp Technologies.
 - For projects marked "in active development" or "coming soon", say so clearly. Don't imply they're shipped.
 
-BIO:
-${PROFILE.bio}
+BIO: ${PROFILE.bio}
 
 CONTACT: ${PROFILE.email} · ${PROFILE.github}
 LOCATION: ${PROFILE.location}
@@ -163,8 +162,6 @@ ${Object.entries(PROFILE.skills)
 
 EXPERIENCE:
 ${PROFILE.timeline.map((t) => `- ${t.when} · ${t.where} · ${t.role}: ${t.note}`).join("\n")}`;
-
-CONTACT: ${PROFILE.email}, ${PROFILE.github}`;
 
 // --- super-basic in-memory rate limiter ------------------------
 // For a student portfolio this is enough. For serious traffic,
