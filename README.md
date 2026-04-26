@@ -1,4 +1,4 @@
-# moksh.dev
+# Moksh Shah
 
 > Personal portfolio with a live AI assistant. Built with React, Vite, and Claude.
 
