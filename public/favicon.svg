@@ -1,28 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- Background — warm black, matches site's --bg variable -->
-  <rect width="64" height="64" fill="#0b0a08"/>
-
-  <!--
-    "M." rendered in Instrument Serif via Google Fonts.
-    The @import works in modern browsers that support SVG <style> blocks.
-    System serifs (Charter, Cambria, Georgia) are listed as fallbacks
-    so the favicon still looks reasonable if the font hasn't loaded.
-  -->
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&amp;display=swap');
-    .glyph {
-      font-family: 'Instrument Serif', 'Charter', 'Cambria', 'Georgia', serif;
-      font-size: 56px;
-      font-weight: 400;
-    }
-  </style>
-
-  <!--
-    Centered "M" with the amber period to its right.
-    text-anchor and dominant-baseline keep it visually balanced
-    inside the 64×64 box at any rendering size.
-  -->
-  <text x="32" y="48" text-anchor="middle" class="glyph" fill="#ffffff">
-    M<tspan fill="#ffb000">.</tspan>
-  </text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none"><metadata><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"><rdf:Description><dc:creator>RealFaviconGenerator</dc:creator><dc:source>https://realfavicongenerator.net</dc:source></rdf:Description></rdf:RDF></metadata><g clip-path="url(#clip0_14_3)">
+<rect width="32" height="32" rx="16" fill="#0B0A08"></rect>
+<path d="M9.28125 9.86328V24.0273H7.14844V6.80078L9.77344 6.41797L13.9844 17.3555L18.9062 6.74609L20.9844 6.91016L22.2969 24.4648H20.4375L19.4531 10.082L14.4766 20.2539L13.2734 20.0898L9.28125 9.86328Z" fill="#EFE9DC"></path>
+<circle cx="25" cy="24" r="1" fill="#FFB000"></circle>
+</g><defs>
+<clipPath id="clip0_14_3">
+<rect width="32" height="32" rx="16" fill="white"></rect>
+</clipPath>
+</defs></svg>

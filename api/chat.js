@@ -13,73 +13,91 @@
 //  Set env var ANTHROPIC_API_KEY in the Vercel dashboard.
 // ============================================================
 
-// --- keep this in sync with PROFILE in the frontend -----------
 const PROFILE = {
   name: "MOKSH SHAH",
-  handle: "moksh.shah",
   title: "Software Engineering Student",
-  location: "Chicago, IL",
-  school: "DePaul University — B.S. Computer Science",
-  status: "OPEN TO INTERNSHIPS & FULL-TIME ROLES",
-  tagline:
-    "Building practical software end-to-end — from iOS apps and database schemas to the interfaces people actually use.",
-  bio: `Moksh Shah is a computer science undergraduate at DePaul University, graduating June 2026. He's currently in Expedia Group's Emerging Professional program, working with a senior engineer mentor on backend system design and API architecture. He previously founded Revamp Technologies, a small studio that built full-stack web solutions for local businesses. His strongest languages are Java, C++, Python, and JavaScript, and he's most comfortable working across the stack — designing relational databases, writing REST APIs, and shipping React frontends. He's looking for a Summer 2026 software engineering internship.`,
   email: "moksh@hellomoksh.dev",
   github: "github.com/mshah972",
+  location: "Chicago, IL",
+  school: "DePaul University — B.S. Computer Science",
+  graduation: "June 2026",
+  status: "OPEN TO INTERNSHIPS & FULL-TIME ROLES",
+
+  bio: `Moksh Shah is a computer science undergraduate at DePaul University, graduating June 2026. He builds full-stack web apps and ships native iOS — currently developing two iOS apps in active development: Odyssey, an AI-powered note-taking app, and Clario, an AI habit tracker with focus-session music integration. He previously founded Revamp Technologies, a studio that built full-stack web solutions for local businesses, and was selected for Expedia Group's Emerging Professional program in 2023. His strongest languages are Swift, Java, C++, Python, JavaScript, and SQL, and he's comfortable working across the stack — relational databases, REST APIs, React frontends, and SwiftUI. He's looking for Summer 2026 internships and full-time roles starting after graduation.`,
+
   projects: [
     {
-      id: "01",
       name: "Odyssey",
-      year: "[Coming Soon]",
+      status: "In active development — coming soon",
+      year: "2026",
       kind: "iOS · AI note-taking app",
-      stack: "SWIFT · SWIFTUI · FIREBASE",
-      description:
-        "Native iOS note-taking app with AI-powered speech-to-text, automatic summarization, and intelligent organization. Backed by Firebase for authentication, cloud storage, and real-time sync across devices.",
-      link: "github.com/mshah972/odyssey-ios",
+      platforms: "iPhone, iPad",
+      stack: "Swift, SwiftUI, Firebase",
+      description: `Native iOS note-taking app for iPhone and iPad. Designed around on-device AI features — all available for free to users. Capabilities include AI summarization of long notes, AI-assisted writing and rewriting, voice-to-text transcription, and AI-generated insights across notes. Backed by Firebase for authentication, cloud storage, and real-time sync across a user's devices.`,
+      keyFeatures: [
+        "On-device AI summary",
+        "AI writing assistant",
+        "AI voice-to-text",
+        "AI insights across notes",
+        "Cross-device sync via Firebase",
+        "iPhone and iPad support",
+        "Free to use",
+      ],
     },
     {
-      id: "02",
       name: "Clario",
-      year: "[COMING SOON]",
-      kind: "iOS · habit tracker",
-      stack: "SWIFT · SWIFTUI · AI",
-      description:
-        "Habit tracker with AI-generated insights and built-in focus sessions — Pomodoro or fixed-duration — paired with music integration to keep you locked in. In active development.",
-      link: "www.hellomoksh.dev",
+      status: "In planning / early development — coming soon",
+      year: "2026",
+      kind: "iOS · habit tracker & focus app",
+      platforms: "iPhone",
+      stack: "Swift, SwiftUI, AI integration (cloud TBD)",
+      description: `Native iPhone app for habit management and focus building. Built around Pomodoro-style and fixed-duration focus sessions, with daily reminders to keep streaks alive. AI generates insights from a user's habit data — patterns, suggestions, and progress summaries. Music integration plays focus-friendly audio during sessions. Currently in the planning phase, so feature scope is still evolving.`,
+      keyFeatures: [
+        "Habit tracking with streaks",
+        "Pomodoro and fixed-duration focus sessions",
+        "Daily reminders",
+        "AI-generated insights from habit data",
+        "Music integration for focus sessions",
+      ],
     },
     {
-      id: "03",
       name: "Storefront",
+      status: "Shipped, 2025",
       year: "2025",
       kind: "Full-stack e-commerce platform",
-      stack: "REACT · FASTAPI · MYSQL",
-      description:
-        "End-to-end e-commerce app with user authentication, product catalog, and order processing. JWT auth with role-based access, normalized MySQL schemas, and indexed queries that cut API response times by roughly 30%.",
-      link: "www.hellomoksh.dev",
+      stack: "React (Vite + Tailwind), FastAPI, MySQL, SQLAlchemy, JWT",
+      description: `End-to-end e-commerce platform with user authentication, product catalog, persistent shopping cart, and order processing. Backend is FastAPI with SQLAlchemy ORM and a normalized 3NF MySQL schema. Frontend is React with Vite and Tailwind. Includes an admin dashboard for catalog management with role-based access control.`,
+      keyFeatures: [
+        "Email/password auth with JWT access tokens and bcrypt password hashing",
+        "Role-based access control: customer and admin roles",
+        "Admin dashboard for catalog management",
+        "Product catalog with category filtering, search, and detail pages",
+        "Persistent server-backed shopping cart (per user)",
+        "Order placement with stock decrement inside a single DB transaction",
+        "Order history with line items",
+        "OpenAPI docs auto-generated at /docs",
+      ],
+      performance: `The catalog endpoints were the hot path. Two changes drove a roughly 30% latency win on /products listings: (1) a composite index on products(category_id, created_at DESC) turned the listing query from a filesort over ~10k rows into an index range scan, and (2) replacing joinedload with selectinload on the category and product-image relations eliminated N+1 lazy loads. p50 list-view response time went from ~140ms to ~95ms, measured with wrk -t4 -c50 -d30s against a seeded 10k-row table.`,
+      schemaNotes: `Normalized 3NF schema with composite indexes on (category_id, created_at), (user_id, status), and order_id.`,
+      link: "github.com/mshah972/storefront",
     },
-    // {
-    //   id: "ID",
-    //   name: "NAME",
-    //   year: "YYYY",
-    //   kind: "TAGLINE",
-    //   stack: "STACK",
-    //   description:
-    //     "DESCRIPTION",
-    //   link: "LINK",
-    // },
   ],
+
   skills: {
     Languages: ["Swift", "Java", "C++", "Python", "JavaScript", "SQL"],
     Mobile: ["SwiftUI", "iOS SDK", "Firebase", "Core Data"],
-    Web: ["React", "FastAPI", "Node", "Tailwind", "REST APIs"],
-    Foundations: ["Data Structures", "Algorithms", "OOP", "MySQL", "JWT Auth"],
+    Web: ["React", "FastAPI", "Node", "Tailwind", "REST APIs", "Vite"],
+    Backend: ["SQLAlchemy", "MySQL", "JWT Auth", "bcrypt"],
+    Foundations: ["Data Structures", "Algorithms", "OOP", "Database Design", "SDLC"],
+    Tools: ["Git", "GitHub", "Docker", "OpenAPI"],
   },
+
   timeline: [
     {
-      when: "2025 — NOW",
+      when: "2025 — present",
       where: "Independent",
       role: "iOS Developer",
-      note: "Building Odyssey and Clario — two native iOS apps with AI integrations, currently in active development.",
+      note: "Building Odyssey and Clario — two native iOS apps with on-device AI integrations, currently in active development.",
     },
     {
       when: "2023 — 2024",
@@ -88,31 +106,63 @@ const PROFILE = {
       note: "Founded and led a small studio building full-stack web solutions for local businesses. Worked directly with clients from requirements to deployment.",
     },
     {
-      when: "2023 - 2023",
+      when: "2023",
       where: "Expedia Group",
       role: "Emerging Professional",
       note: "Selected for Expedia's early career development program. Worked with a senior engineer mentor on backend system design, API architecture, and engineering best practices.",
     },
     {
-      when: "2022 — NOW",
+      when: "2022 — present",
       where: "DePaul University",
-      role: "B.S. Computer Science",
+      role: "B.S. Computer Science (graduating June 2026)",
       note: "Coursework in data structures, algorithms, OOP, database systems, and the software development lifecycle.",
     },
   ],
 };
 
-const SYSTEM_PROMPT = `You are the portfolio assistant for ${PROFILE.name}, a ${PROFILE.title}. Answer visitor questions about them in a concise, confident, slightly dry tone. Never invent facts beyond what's below. If asked something not covered, say "That's not in Moksh's public bio — best to ask directly at ${PROFILE.email}." Keep answers under 80 words. No markdown, no lists unless the question demands it. If asked about topics unrelated to Moksh's career or work (general coding help, jokes, trivia, etc.), politely redirect.
+const SYSTEM_PROMPT = `You are the portfolio assistant for ${PROFILE.name}, a ${PROFILE.title} at ${PROFILE.school}, graduating ${PROFILE.graduation}. You answer questions from visitors about Moksh's work, projects, skills, and availability.
 
-BIO: ${PROFILE.bio}
+VOICE: concise, confident, slightly dry. Like a thoughtful colleague describing a friend's work — not a marketing page. Avoid hype words ("amazing", "innovative", "cutting-edge"). No emojis. No markdown formatting unless the question demands a list. Default to 2-4 sentences.
+
+RULES:
+- Only answer based on the facts below. Never invent projects, employers, dates, technologies, or metrics.
+- If asked something not covered (specific salary, personal life, opinions on other companies, technical help unrelated to Moksh's work), say: "That's not in Moksh's public bio — best to ask him directly at ${PROFILE.email}."
+- If asked to do general tasks (write code, summarize articles, do homework, tell jokes), redirect: "I'm only here to answer questions about Moksh. For other questions, you'd want to talk to Claude directly."
+- If asked about timelines or availability, mention: status is "${PROFILE.status}" and graduation is ${PROFILE.graduation}.
+- Project names are proper nouns — capitalize them: Odyssey, Clario, Storefront, Revamp Technologies.
+- For projects marked "in active development" or "coming soon", say so clearly. Don't imply they're shipped.
+
+BIO:
+${PROFILE.bio}
+
+CONTACT: ${PROFILE.email} · ${PROFILE.github}
+LOCATION: ${PROFILE.location}
 
 PROJECTS:
-${PROFILE.projects.map(p => `- ${p.name} (${p.year}, ${p.stack}): ${p.description}`).join("\n")}
+${PROFILE.projects
+  .map(
+    (p) => `
+[${p.name}] — ${p.kind}
+Status: ${p.status}
+Stack: ${p.stack}${p.platforms ? `\nPlatforms: ${p.platforms}` : ""}
+Description: ${p.description}${
+      p.keyFeatures
+        ? `\nKey features: ${p.keyFeatures.join("; ")}`
+        : ""
+    }${p.performance ? `\nPerformance notes: ${p.performance}` : ""}${
+      p.schemaNotes ? `\nSchema notes: ${p.schemaNotes}` : ""
+    }
+Link: ${p.link}`
+  )
+  .join("\n")}
 
-SKILLS: ${Object.entries(PROFILE.skills).map(([k, v]) => `${k}: ${v.join(", ")}`).join(" | ")}
+SKILLS:
+${Object.entries(PROFILE.skills)
+  .map(([k, v]) => `${k}: ${v.join(", ")}`)
+  .join("\n")}
 
 EXPERIENCE:
-${PROFILE.timeline.map(t => `- ${t.when} · ${t.where} · ${t.role}${t.note ? `: ${t.note}` : ""}`).join("\n")}
+${PROFILE.timeline.map((t) => `- ${t.when} · ${t.where} · ${t.role}: ${t.note}`).join("\n")}`;
 
 CONTACT: ${PROFILE.email}, ${PROFILE.github}`;
 

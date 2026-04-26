@@ -28,7 +28,6 @@ const PROFILE = {
       stack: "SWIFT · SWIFTUI · FIREBASE",
       description:
         "Native iOS note-taking app with AI-powered speech-to-text, automatic summarization, and intelligent organization. Backed by Firebase for authentication, cloud storage, and real-time sync across devices.",
-      link: "",
     },
     {
       id: "02",
@@ -38,7 +37,6 @@ const PROFILE = {
       stack: "SWIFT · SWIFTUI · AI",
       description:
         "Habit tracker with AI-generated insights and built-in focus sessions — Pomodoro or fixed-duration — paired with music integration to keep you locked in. In active development.",
-      link: "",
     },
     {
       id: "03",
@@ -48,7 +46,7 @@ const PROFILE = {
       stack: "REACT · FASTAPI · MYSQL",
       description:
         "End-to-end e-commerce app with user authentication, product catalog, and order processing. JWT auth with role-based access, normalized MySQL schemas, and indexed queries that cut API response times by roughly 30%.",
-      link: "https://github.com/mshah972/storefront",
+      link: "github.com/mshah972/storefront",
     },
     // {
     //   id: "ID",
@@ -96,10 +94,10 @@ const PROFILE = {
 };
 
 const SUGGESTED_QUESTIONS = [
-  "What is Moksh building?",
-  "Tell me about Odyssey.",
-  "What's Clario?",
-  "Is Moksh open to internships?",
+  "What's Moksh working on right now?",
+  "How did he get a 30% speedup on Storefront?",
+  "What makes Odyssey different from other note apps?",
+  "Is he available for Summer 2026?",
 ];
 
 // ============================================================
@@ -1138,18 +1136,26 @@ function Work() {
 
 function ProjectRow({ p, last }) {
   const [hover, setHover] = useState(false);
+  const hasLink = Boolean(p.link);
+
+  // Render as an anchor if there's a link, plain div otherwise.
+  // Same styling either way; only the interaction differs.
+  const Wrapper = hasLink ? "a" : "div";
+  const wrapperProps = hasLink
+    ? { href: `https://${p.link}`, target: "_blank", rel: "noreferrer" }
+    : {};
+
   return (
-    <a
-      href={`https://${p.link}`}
-      target="_blank"
-      rel="noreferrer"
+    <Wrapper
+      {...wrapperProps}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className="group grid md:grid-cols-12 gap-4 md:gap-6 items-baseline py-6 md:py-8 border-t transition-colors"
+      className="group grid md:grid-cols-12 gap-4 md:gap-6 items-baseline py-6 md:py-8 border-t transition-colors p-4"
       style={{
         borderColor: "var(--border)",
         borderBottom: last ? "1px solid var(--border)" : "",
-        background: hover ? "var(--surface)" : "transparent",
+        background: hover && hasLink ? "var(--surface)" : "transparent",
+        cursor: hasLink ? "pointer" : "default",
       }}
     >
       <div
@@ -1164,7 +1170,7 @@ function ProjectRow({ p, last }) {
           className="font-serif leading-none"
           style={{
             fontSize: "clamp(2rem, 4vw, 3rem)",
-            color: hover ? "var(--amber)" : "var(--text)",
+            color: hover && hasLink ? "var(--amber)" : "var(--text)",
             transition: "color 0.2s",
           }}
         >
@@ -1179,16 +1185,16 @@ function ProjectRow({ p, last }) {
       </div>
 
       <div
-        className="md:col-span-5 font-mono text-sm leading-relaxed"
+        className="md:col-span-4 font-mono text-sm leading-relaxed"
         style={{ color: "var(--text)", opacity: 0.85 }}
       >
         {p.description}
       </div>
 
-      <div className="md:col-span-2 flex md:justify-end">
-        <Tag>{p.stack}</Tag>
+      <div className="md:col-span-3 flex md:justify-end">
+        <Tag>{hasLink ? p.stack : "IN DEVELOPMENT"}</Tag>
       </div>
-    </a>
+    </Wrapper>
   );
 }
 
@@ -1392,8 +1398,10 @@ function Footer() {
         style={{ color: "var(--dim)" }}
       >
         <span>© {new Date().getFullYear()} {PROFILE.name} — ALL SYSTEMS NOMINAL</span>
-        <span>DESIGNED + HAND-CODED · NO TEMPLATES</span>
-        <span style={{ color: "var(--amber)" }}>◆ ◆ ◆</span>
+        <div className="flex items-center gap-6">
+          <span>DESIGNED + HAND-CODED</span>
+          <span style={{ color: "var(--amber)" }}>◆ ◆ ◆</span>
+        </div>
       </div>
     </footer>
   );
